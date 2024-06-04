@@ -7,20 +7,34 @@
 // when button is clicked, runs timer - basic IDEA of code, still setting up
 function timerStart() {
   // variables
-  let timer = parseInt(document.getElementById("timer-input").value)
-  const now = new Date()
-  const seconds = now.getSeconds()
-  let counter = timer
+  let timeInHours = parseInt(document.getElementById("timer-hours").value)
+  let timeInMinutes = parseInt(document.getElementById("timer-minutes").value)
+  let timeInSeconds = parseInt(document.getElementById("timer-seconds").value)
+  let timer = timeInHours + timeInMinutes + timeInSeconds
 
-  while (True)
-    // breaks out of loop if timer reaches zero
-    if (timer == 0) {
-      // will add sound file
-      break
+  /* const now = new Date()
+  const seconds = now.getSeconds()
+    let counter = timer */
+
+  const countdown = setInterval(function () {
+    // tuner goes down by 1
+    timer += -1
+    counter++
+    if (counter % 60 == 0) {
+      timeInMinutes += -1
     }
-    
-    // if countdown reaches 0
-    if (hours == 0 && minutes == 0 && seconds == 0) {
+
+    if (counter % 3600 == 0) {
+      timeInHours += -1
+    }
+
+    document.getElementById("timer-countdown").innerHTML =
+      timeInHours + "h " + timeInMinutes + "m " + timeInSeconds + "s"
+
+    if (timer < 0) {
       // play noise
+      clearInterval(countdown)
+      document.getElementById("timer-countdown").innerHTML = "DONE"
     }
+  }, 1000)
 }
