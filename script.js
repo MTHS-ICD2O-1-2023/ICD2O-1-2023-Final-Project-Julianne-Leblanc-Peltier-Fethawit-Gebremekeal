@@ -10,10 +10,12 @@ function timerStart() {
   const timeInHours = parseInt(document.getElementById("timer-hours").value)
   const timeInMinutes = parseInt(document.getElementById("timer-minutes").value)
   const timeInSeconds = parseInt(document.getElementById("timer-seconds").value)
+  let timer = ((timeInHours) * 60 * 60) + ((timeInMinutes) * 60) + timeInSeconds
+  let counter = 0
   let hours = timeInHours
   let minutes = timeInMinutes
   let seconds = timeInSeconds
-  let timer = ((timeInHours) * 60 * 60) + ((timeInMinutes) * 60) + timeInSeconds
+
 
   /* const now = new Date()
   const seconds = now.getSeconds()
@@ -21,19 +23,19 @@ function timerStart() {
 
   const countdownForSeconds = setInterval(function () {
     // timer goes down by 1
-    timer += -1
+    counter ++
     seconds += -1
-    if (timer % 60 === 0) {
+    if (seconds == 0) {
       minutes += -1
-    }
-
-    if (timer % 3600 === 0) {
-      hours += -1
+      seconds = 59
+      if (minutes == 0)
+        hours += -1
+        minutes = 59
     }
 
     document.getElementById("timer-countdown").innerHTML = hours + "h " + minutes + "m " + seconds + "s"
 
-    if (timer < 0) {
+    if (counter == timer) {
       // play noise
       clearInterval(countdownForSeconds)
       document.getElementById("timer-countdown").innerHTML = "DONE"
