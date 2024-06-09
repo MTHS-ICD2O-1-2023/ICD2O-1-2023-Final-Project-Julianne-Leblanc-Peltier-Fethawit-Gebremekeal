@@ -19,7 +19,7 @@ body {
   .innerbody {
   background-color: rgb(250 250 250);
   width: 500px;
-  padding: 10px;
+  padding: center;
   border: 5px solid rgb(208 40 2);
   margin: 20px auto;
 }
