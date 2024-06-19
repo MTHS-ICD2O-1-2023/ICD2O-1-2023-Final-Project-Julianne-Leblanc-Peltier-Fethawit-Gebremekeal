@@ -10,6 +10,8 @@ function timerStart() {
   const timeInHours = parseInt(document.getElementById("timer-hours").value)
   const timeInMinutes = parseInt(document.getElementById("timer-minutes").value)
   const timeInSeconds = parseInt(document.getElementById("timer-seconds").value)
+  // https://gomakethings.com/how-to-play-a-sound-with-javascript/
+  const audio = new Audio('./assets/tyler-song.mp3')
   let hours = timeInHours
   let minutes = timeInMinutes
   let seconds = timeInSeconds
@@ -32,6 +34,7 @@ function timerStart() {
 
     if (hours == 0 && minutes == 0 && seconds == 0) {
       document.getElementById("timer-countdown").innerHTML = "DONE"
+      audio.play()
     }
   }, 1000) // 1000 milliseconds the function is called again
 }
